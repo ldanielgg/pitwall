@@ -1,5 +1,14 @@
 # Pitwall
 
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![FastF1](https://img.shields.io/badge/FastF1-E10600?logo=github&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
+
 Pitwall is a web-based Formula 1 data explorer built with React, TypeScript, and FastAPI. The project aims to make historical race data easier to explore and understand, with future capabilities for analyzing lap times, tire stints, and pit-stop strategies.
 
 ## Features
@@ -42,7 +51,7 @@ Pitwall is a web-based Formula 1 data explorer built with React, TypeScript, and
     ```
     The frontend development server will be available at the local URL shown in your terminal, typically http://localhost:5173
     
-4.  **Set Up the Backend**\
+4.  **Set Up the Backend:**\
    Open a separate terminal:
     ```bash
     cd backend
@@ -53,7 +62,7 @@ Pitwall is a web-based Formula 1 data explorer built with React, TypeScript, and
     ```
     The backend API will be available at http://127.0.0.1:8000
     
-6.  **Verify the Backend**\
+6.  **Verify the Backend:**\
    Open a separate terminal: http://127.0.0.1:8000/docs
 
 ## Project Status
