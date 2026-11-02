@@ -69,3 +69,6 @@ Pitwall is a web-based Formula 1 data explorer built with React, TypeScript, and
 Pitwall is currently in development. The initial focus is building the application foundation and integrating historical Formula 1 race data before adding analysis and simulation features.
 
 Pitwall is an independent, unofficial project and is not affiliated with or endorsed by Formula 1 of the FIA.
+
+## AI Usage
+AI tools (such as ChatGPT/Gemini) were used strictly for brainstorming features, architectual design, and troubleshooting. All code in this repository has been manually written and verified by hand without direct copy-pasting.
