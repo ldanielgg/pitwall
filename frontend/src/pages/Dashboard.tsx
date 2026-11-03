@@ -2,7 +2,9 @@ import SummaryCard from "../components/dashboard/SummaryCard"
 import { CalendarDays, Flag, Trophy, Icon } from 'lucide-react'
 import { motorRacingHelmet } from "@lucide/lab"
 import CurrentRace from "../components/dashboard/CurrentRace"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import LapTimeTrend from "../components/dashboard/LapTimeTrend"
+import type { RaceLapData } from "../types/race"
 
 const initialRace = {
     title: "Mexico City Grand Prix",
@@ -19,6 +21,18 @@ const initialRace = {
 
 export default function Dashboard() {
     const [selectedRace, setSelectedRace] = useState(initialRace);
+    const [raceData, setRaceData] = useState<RaceLapData | null>(null)
+
+    useEffect(() => {
+        async function fetchRaceData() {
+            const response = await fetch("/race_data.json");
+            const data: RaceLapData = await response.json();
+
+            setRaceData(data);
+        }
+
+        fetchRaceData();
+    }, []);
 
     return (
         <main className="flex-1 min-h-screen bg-[#111318] text-white p-8">
@@ -32,6 +46,7 @@ export default function Dashboard() {
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-4">
                 <CurrentRace race={selectedRace} image="https://www.racefans.net/wp-content/uploads/2026/11/racefansdotnet-24-11-02-00-47-07-3-SI202611010505.jpg" />
+                {raceData && <LapTimeTrend raceData={raceData} />}
             </div>
         </main>
     )
