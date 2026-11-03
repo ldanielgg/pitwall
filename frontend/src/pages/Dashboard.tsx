@@ -5,6 +5,7 @@ import CurrentRace from "../components/dashboard/CurrentRace"
 import { useState, useEffect } from "react"
 import LapTimeTrend from "../components/dashboard/LapTimeTrend"
 import type { RaceLapData } from "../types/race"
+import TopDrivers from "../components/dashboard/TopDrivers"
 
 const initialRace = {
     title: "Mexico City Grand Prix",
@@ -19,9 +20,18 @@ const initialRace = {
     ]
 };
 
+const driverChampionship = {
+    results: [
+        { position: 1, driver: "Antonelli", team: "Mercedes", points: 380 },
+        { position: 2, driver: "Verstappen", team: "Red Bull", points: 261 },
+        { position: 3, driver: "Hamilton", team: "Ferrari", points: 259 }
+    ]
+};
+
 export default function Dashboard() {
     const [selectedRace, setSelectedRace] = useState(initialRace);
     const [raceData, setRaceData] = useState<RaceLapData | null>(null)
+    const [topDrivers, setTopDrivers] = useState(driverChampionship)
 
     useEffect(() => {
         async function fetchRaceData() {
@@ -47,6 +57,9 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-4">
                 <CurrentRace race={selectedRace} image="https://www.racefans.net/wp-content/uploads/2026/11/racefansdotnet-24-11-02-00-47-07-3-SI202611010505.jpg" />
                 {raceData && <LapTimeTrend raceData={raceData} />}
+            </div>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-4">
+                <TopDrivers results={topDrivers.results} />
             </div>
         </main>
     )

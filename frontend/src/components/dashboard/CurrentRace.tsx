@@ -51,7 +51,7 @@ export default function CurrentRace({ race, image }: CurrentRaceProps) {
                 </div>
                 <div className="flex flex-col flex-1 pl-4 pr-4 justify-between">
                     <div className="flex flex-row gap-8 items-center">
-                        <div className="text-3xl font-semibold">{race.results[0].position}</div>
+                        <div className="w-4 text-3xl font-semibold tabular-nums">{race.results[0].position}</div>
                         <div className="flex flex-col">
                             <div className="text-2xl font-semibold">{race.results[0].driver}</div>
                             <div className="text-xl font-normal text-zinc-400">{race.results[0].team}</div>
@@ -61,7 +61,7 @@ export default function CurrentRace({ race, image }: CurrentRaceProps) {
                         </div>
                     </div>
                     <div className="flex flex-row gap-8 items-center">
-                        <div className="text-3xl font-semibold">{race.results[1].position}</div>
+                        <div className="w-4 text-3xl font-semibold tabular-nums">{race.results[1].position}</div>
                         <div className="flex flex-col">
                             <div className="text-2xl font-semibold">{race.results[1].driver}</div>
                             <div className="text-xl font-normal text-zinc-400">{race.results[1].team}</div>
@@ -71,7 +71,7 @@ export default function CurrentRace({ race, image }: CurrentRaceProps) {
                         </div>
                     </div>
                     <div className="flex flex-row gap-8 items-center">
-                        <div className="text-3xl font-semibold">{race.results[2].position}</div>
+                        <div className="w-4 text-3xl font-semibold tabular-nums">{race.results[2].position}</div>
                         <div className="flex flex-col">
                             <div className="text-2xl font-semibold">{race.results[2].driver}</div>
                             <div className="text-xl font-normal text-zinc-400">{race.results[2].team}</div>
