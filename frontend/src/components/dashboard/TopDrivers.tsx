@@ -34,7 +34,7 @@ export default function TopDrivers({ results }: TopDriversProp) {
                     <div className="flex flex-row gap-8 items-center">
                         <div className="w-4 text-3xl tabular-nums">{results[1].position}</div>
                         <div className="w-40 shrink-0 text-2xl truncate">{results[1].driver}</div>
-                        <div className="flex-1 h-3 rounded-full bg-gradient-to-r from-black to-neutral-900 overflow-hidden">
+                        <div className="flex-1 h-3 rounded-full bg-neutral-800 overflow-hidden">
                             <div 
                                 className="h-full rounded-full bg-gradient-to-r from-blue-900 to-blue-600"
                                 style={{ width: `${(results[1].points / maxPoints) * 100}%` }}
@@ -45,7 +45,7 @@ export default function TopDrivers({ results }: TopDriversProp) {
                     <div className="flex flex-row gap-8 items-center">
                         <div className="w-4 text-3xl tabular-nums">{results[2].position}</div>
                         <div className="w-40 shrink-0 text-2xl truncate">{results[2].driver}</div>
-                        <div className="flex-1 h-3 rounded-full bg-gradient-to-r from-black to-neutral-900 overflow-hidden">
+                        <div className="flex-1 h-3 rounded-full overflow-hidden">
                             <div 
                                 className="h-full rounded-full bg-gradient-to-r from-red-900 to-red-600"
                                 style={{ width: `${(results[2].points / maxPoints) * 100}%` }}
