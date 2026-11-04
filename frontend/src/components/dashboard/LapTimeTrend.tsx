@@ -1,5 +1,5 @@
 import { Timer } from 'lucide-react'
-import { LineChart } from '@mui/x-charts/LineChart';
+import { LineChart } from '@mui/x-charts';
 import type { RaceLapData } from '../../types/race';
 
 interface LapTimeTrendProps {
@@ -19,7 +19,7 @@ export default function LapTimeTrend({ raceData }: LapTimeTrendProps) {
     const upperBound = sortedLapTimes[Math.floor(sortedLapTimes.length * 0.75)];
 
     return (
-        <div className="relative flex flex-col mt-6 bg-[#191E26] border-2 border-[#252932] rounded-xl py-2 pl-1">
+        <div className="relative flex flex-col mt-6 bg-gradient-to-b from-zinc-950 to-gray-900 border-2 border-[#191d21] rounded-xl py-2 pl-1">
             <div className="pt-4 pr-4 pl-4 flex flex-row items-center gap-8">
                 <Timer size={64} color="red"/>
                 <div className="text-2xl font-semibold text-zinc-400">LAP TIME TREND</div>
@@ -31,13 +31,8 @@ export default function LapTimeTrend({ raceData }: LapTimeTrendProps) {
                             data: raceData.ANT.lapNumbers,
                             label: "Lap Number",
                             tickLabelStyle: {
-                                fill: '#9CA3AF',
-                                fontWeight: 600
-                            },
-                            labelStyle: {
-                                fill: '#D1D5DB',
-                                fontSize: 14,
-                                fontWeight: 600
+                                fill: '#black',
+                                fontSize: 14
                             },
                         },
                     ]}
@@ -63,39 +58,12 @@ export default function LapTimeTrend({ raceData }: LapTimeTrendProps) {
                             tickLabelStyle: {
                                 fill: '#9CA3AF',
                                 fontSize: 14
-                            },
-                            labelStyle: {
-                                fill: '#D1D5DB',
-                                fontSize: 17,
-                                fontWeight: 600
-                            },
+                            }
                         },
                     ]}
                     slotProps={{
                         legend: {
-                            sx: {
-                                color: '#D1D5DB',
-                                fontSize: 16,
-                                fontWeight: 600,
-                            },
-                        },
-                    }}
-                    sx={{
-                        "& .MuiChartsAxis-line": {
-                            stroke: "#343943"
-                        },
-                        "& .MuiChartsAxis-tick": {
-                            stroke: "#343943"
-                        },
-                        "& .MuiChartsGrid-line": {
-                            stroke: "#343943",
-                            strokeDasharray: "8 8",
-                        },
-                        "& .MuiChartsLegend-mark": {
-                            width: 24,
-                        },
-                        "& .MuiChartsLegend-series": {
-                            gap: "8px",
+                            sx: { fontSize: 16, fontWeight: 600 },
                         }
                     }}
                     grid={{

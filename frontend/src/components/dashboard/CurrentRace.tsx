@@ -22,7 +22,7 @@ interface CurrentRaceProps {
 export default function CurrentRace({ race, image }: CurrentRaceProps) {
 
     return (
-        <div className="relative flex flex-col mt-6 bg-[#191E26] border-2 border-[#252932] rounded-xl py-2 pl-1">
+        <div className="relative flex flex-col mt-6 bg-gradient-to-b from-zinc-950 to-gray-900 border-2 border-[#191d21] rounded-xl py-2 pl-1">
             <div className="pt-4 pr-4 pl-4 flex flex-row items-center gap-8">
                 <ChartNoAxesCombined size={64} color="red"/>
                 <div className="text-2xl font-semibold text-zinc-400">CURRENT RACE</div>

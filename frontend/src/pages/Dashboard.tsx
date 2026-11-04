@@ -45,7 +45,7 @@ export default function Dashboard() {
     }, []);
 
     return (
-        <main className="flex-1 min-h-screen bg-[#111318] text-white p-8">
+        <main className="flex-1 h-screen overflow-y-auto scrollbar-thin bg-zinc-950 text-white p-8">
             <h1 className="text-6xl font-semibold">Dashboard</h1>
             <h2 className="text-2xl text-zinc-400">Formula 1 data and race overview</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-4">

@@ -35,13 +35,10 @@ export default function Sidebar() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar Container */}
       <aside
-        className={`bg-[#191b1f] text-white flex flex-col transition-all duration-300 border-r border-[#252932] ${isOpen ? 'w-80' : 'w-18'
-          }`}
+        className={`bg-zinc-950 text-white flex flex-col transition-all duration-300 border-r-2 border-[#191d21] ${isOpen ? 'w-80' : 'w-18'}`}
       >
-        {/* Header Section */}
-        <div className="p-5 flex items-center justify-between border-b border-[#252932] h-24">
+        <div className="p-5 flex items-center justify-between border-b-2 border-[#191d21] h-24">
           {isOpen && <span className="font-bold text-5xl tracking-wider">PITWALL</span>}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -51,8 +48,6 @@ export default function Sidebar() {
             {isOpen ? '◀' : '▶'}
           </button>
         </div>
-
-        {/* Navigation Items */}
         <nav className="flex-1 py-4 space-y-1">
           {menuItems.map((item, index) => (
             <a
@@ -76,9 +71,7 @@ export default function Sidebar() {
             </a>
           ))}
         </nav>
-
-        {/* Footer Section */}
-        <div className="p-6 border-t border-[#252932] text-xl text-slate-400 text-center h-32 flex flex-col items-start">
+        <div className="p-6 border-t-2 border-[#191d21] text-xl text-slate-400 text-center h-32 flex flex-col items-start">
           {isOpen ? (
             <span className="flex flex-row items-center gap-2 text-slate-300">
               {health ? (
