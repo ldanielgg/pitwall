@@ -1,4 +1,4 @@
-const { getSeasons, getRacesBySeason, getDriverStandings } = require("../services/jolpicaService");
+const { getSeasons, getRacesBySeason } = require("../services/jolpicaService");
 
 const getAllSeasons = async (req, res) => {
     try {
@@ -28,15 +28,4 @@ const getSeasonRaces = async (req, res) => {
     }
 };
 
-const getSeasonStandings = async (req, res) => {
-    try {
-        const data = await getDriverStandings(req.params.year, req.params.round);
-        res.status(200).json(data);
-    } catch (error) {
-        res.status(500).json({
-            error: "Failed to retrieve standings"
-        });
-    }
-};
-
-module.exports = { getAllSeasons, getSeasonRaces, getSeasonStandings };
+module.exports = { getAllSeasons, getSeasonRaces };

@@ -36,4 +36,34 @@ const getDriverStandings = async (year, round) => {
     return data
 };
 
-module.exports = { getSeasons, getRacesBySeason, getDriverStandings };
+const getConstructorStandings = async (year, round) => {
+    let response;
+    if (round) {
+        response = await fetch(`${BASE_URL}/${year}/${round}/constructorstandings.json`);
+    } else {
+        response = await fetch(`${BASE_URL}/${year}/constructorstandings.json`);
+    }
+    const data = await response.json()
+    return data
+};
+
+const getRaceResults = async (year, round) => {
+    const response = await fetch(`${BASE_URL}/${year}/${round}/results.json`);
+    const data = await response.json();
+    return data
+}
+
+const getRaceLaps = async (year, round) => {
+    const response = await fetch(`${BASE_URL}/${year}/${round}/laps.json`);
+    const data = await response.json();
+    return data
+}
+
+module.exports = { 
+    getSeasons, 
+    getRacesBySeason, 
+    getDriverStandings, 
+    getRaceResults, 
+    getConstructorStandings,
+    getRaceLaps, 
+};
