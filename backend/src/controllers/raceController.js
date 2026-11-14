@@ -13,7 +13,7 @@ const getSeasonRaceResults = async (req, res) => {
 
 const getSeasonRaceLaps = async (req, res) => {
     try {
-        const data = await getRaceLaps(req.params.year, req.params.round);
+        const data = await getRaceLaps(req.params.year, req.params.round, req.params.driver_id);
         res.status(200).json(data)
     } catch (error) {
         res.status(500).json({
