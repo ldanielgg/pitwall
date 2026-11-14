@@ -5,8 +5,8 @@ const getAllSeasons = async (req, res) => {
         const data = await getSeasons();
         res.status(200).json(data);
     } catch (error) {
-        res.status(500).json({
-            error: "Failed to retrieve F1 seasons"
+        res.status(503).json({
+            error: error.message
         });
     }
 };

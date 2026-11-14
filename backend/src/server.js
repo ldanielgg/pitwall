@@ -11,6 +11,10 @@ const seasonRoutes = require("./routes/seasons");
 app.use("/api/health", healthRoutes);
 app.use("/api/seasons", seasonRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Server running on ${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server running on ${PORT}`);
+    });
+}
+
+module.exports = { app };

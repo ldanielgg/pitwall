@@ -2,6 +2,9 @@ const BASE_URL = "https://api.jolpi.ca/ergast/f1";
 
 const getSeasons = async () => {
     const response = await fetch(`${BASE_URL}/seasons.json`);
+    if (!response.ok) {
+        throw new Error("Jolpica API unavailable");
+    }
     const data = await response.json();
     return data;
 };
