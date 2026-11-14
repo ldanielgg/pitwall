@@ -5,9 +5,15 @@ const getAllSeasons = async (req, res) => {
         const data = await getSeasons();
         res.status(200).json(data);
     } catch (error) {
-        res.status(503).json({
-            error: error.message
-        });
+        if (error.message === "Jolpica API took too long") {
+            res.status(504).json({
+                error: error.message
+            });
+        } else {
+            res.status(503).json({
+                error: error.message
+            });
+        }
     }
 };
 

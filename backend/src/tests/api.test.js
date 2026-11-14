@@ -29,11 +29,22 @@ test("GET /api/seasons should return all seasons", async (t) => {
     assert.strictEqual(response.body.seasons[0].season, "2024");
 });
 
-test("GET /api/seasons should return error", async (t) => {
+test("GET /api/seasons should return error for being unavailable", async (t) => {
     t.mock.method(globalThis, "fetch", async () => {
         throw new Error("Jolpica API unavailable");
     });
     const response = await request(app).get('/api/seasons');
     assert.strictEqual(response.status, 503);
     assert.strictEqual(response.body.error, "Jolpica API unavailable");
+});
+
+test("GET /api/seasons should return error for taking too long", async (t) => {
+    t.mock.method(globalThis, "fetch", async () => {
+        const error = new Error("The operation timed out");
+        error.name = "TimeoutError";
+        throw error;
+    });
+    const response = await request(app).get('/api/seasons');
+    assert.strictEqual(response.status, 504);
+    assert.strictEqual(response.body.error, "Jolpica API took too long");
 });

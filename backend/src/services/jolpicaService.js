@@ -1,12 +1,22 @@
 const BASE_URL = "https://api.jolpi.ca/ergast/f1";
 
 const getSeasons = async () => {
-    const response = await fetch(`${BASE_URL}/seasons.json`);
-    if (!response.ok) {
-        throw new Error("Jolpica API unavailable");
+    try {
+        const response = await fetch(`${BASE_URL}/seasons.json`, {
+            signal: AbortSignal.timeout(10000)
+        });
+        if (!response.ok) {
+            throw new Error("Jolpica API unavailable");
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        if (error.name === "TimeoutError") {
+            throw new Error("Jolpica API took too long");
+        } else {
+            throw error;
+        }
     }
-    const data = await response.json();
-    return data;
 };
 
 const getRacesBySeason = async (year) => {
