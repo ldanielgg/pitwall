@@ -20,6 +20,11 @@ const getAllSeasons = async (req, res) => {
 const getSeasonRaces = async (req, res) => {
     try {
         const data = await getRacesBySeason(req.params.year);
+        if (!data || data.MRData.total === "0") {
+            return res.status(404).json({
+                error: "Season not found"
+            });
+        }
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({

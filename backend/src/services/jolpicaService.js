@@ -24,58 +24,114 @@ const getSeasons = async () => {
 };
 
 const getRacesBySeason = async (year) => {
-    const response = await fetch(`${BASE_URL}/${year}/races.json`, {
-        headers: HEADERS
-    });
-    const data = await response.json();
-    return data
+    try {
+        const response = await fetch(`${BASE_URL}/${year}/races.json`, {
+            headers: HEADERS,
+            signal: AbortSignal.timeout(10000)
+        });
+        if (!response.ok) {
+            throw new Error("Jolpica API unavailable");
+        }
+        const data = await response.json();
+        return data
+    } catch (error) {
+        if (error.name === "TimeoutError") {
+            throw new Error("Jolpica API took too long");
+        } else {
+            throw error;
+        }
+    }
 };
 
 const getDriverStandings = async (year, round) => {
-    let response;
-    if (round) {
-        response = await fetch(`${BASE_URL}/${year}/${round}/driverstandings.json`, {
-        headers: HEADERS
-    });
-    } else {
-        response = await fetch(`${BASE_URL}/${year}/driverstandings.json`, {
-        headers: HEADERS
-    });
+    try {
+        let response;
+        if (round) {
+            response = await fetch(`${BASE_URL}/${year}/${round}/driverstandings.json`, {
+            headers: HEADERS
+        });
+        } else {
+            response = await fetch(`${BASE_URL}/${year}/driverstandings.json`, {
+            headers: HEADERS
+        });
+        }
+        if (!response.ok) {
+            throw new Error("Jolpica API unavailable");
+        }
+        const data = await response.json()
+        return data
+    } catch (error) {
+        if (error.name === "TimeoutError") {
+            throw new Error("Jolpica API took too long");
+        } else {
+            throw error;
+        }
     }
-    const data = await response.json()
-    return data
 };
 
 const getConstructorStandings = async (year, round) => {
-    let response;
-    if (round) {
-        response = await fetch(`${BASE_URL}/${year}/${round}/constructorstandings.json`, {
-        headers: HEADERS
-    });
-    } else {
-        response = await fetch(`${BASE_URL}/${year}/constructorstandings.json`, {
-        headers: HEADERS
-    });
+    try {
+        let response;
+        if (round) {
+            response = await fetch(`${BASE_URL}/${year}/${round}/constructorstandings.json`, {
+            headers: HEADERS
+        });
+        } else {
+            response = await fetch(`${BASE_URL}/${year}/constructorstandings.json`, {
+            headers: HEADERS
+        });
+        }
+        if (!response.ok) {
+            throw new Error("Jolpica API unavailable");
+        }
+        const data = await response.json()
+        return data
+    } catch (error) {
+        if (error.name === "TimeoutError") {
+            throw new Error("Jolpica API took too long");
+        } else {
+            throw error;
+        }
     }
-    const data = await response.json()
-    return data
 };
 
 const getRaceResults = async (year, round) => {
-    const response = await fetch(`${BASE_URL}/${year}/${round}/results.json`, {
-        headers: HEADERS
-    });
-    const data = await response.json();
-    return data
-}
+    try {
+        const response = await fetch(`${BASE_URL}/${year}/${round}/results.json`, {
+            headers: HEADERS
+        });
+        if (!response.ok) {
+            throw new Error("Jolpica API unavailable");
+        }
+        const data = await response.json();
+        return data
+    } catch (error) {
+        if (error.name === "TimeoutError") {
+            throw new Error("Jolpica API took too long");
+        } else {
+            throw error;
+        }
+    }
+};
 
 const getRaceLaps = async (year, round, driver_id) => {
-    const response = await fetch(`${BASE_URL}/${year}/${round}/drivers/${driver_id}/laps.json?limit=100`, {
-        headers: HEADERS
-    });
-    const data = await response.json();
-    return data
-}
+    try {
+        const response = await fetch(`${BASE_URL}/${year}/${round}/drivers/${driver_id}/laps.json?limit=100`, {
+            headers: HEADERS
+        });
+        if (!response.ok) {
+            throw new Error("Jolpica API unavailable");
+        }
+        const data = await response.json();
+        return data
+    } catch (error) {
+        if (error.name === "TimeoutError") {
+            throw new Error("Jolpica API took too long");
+        } else {
+            throw error;
+        }
+    }
+};
 
 module.exports = { 
     getSeasons, 
