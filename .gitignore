@@ -2,19 +2,26 @@
 node_modules/
 frontend/dist/
 
-# Python
-__pycache__/
-*.py[cod]
-backend/.venv/
-.pytest_cache/
-
 # Environment variables
 .env
 .env.*
 !.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
 
 # FastF1 cache
 backend/.fastf1_cache/
 
 # MacOS files
 .DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# Build output
+dist/
+build/
