@@ -1,5 +1,5 @@
-import { ChartNoAxesCombined } from 'lucide-react'
-import ReactCountryFlag from "react-country-flag"
+import { ChartNoAxesCombined } from 'lucide-react';
+import ReactCountryFlag from "react-country-flag";
 
 interface CurrentRaceProps {
     race: {

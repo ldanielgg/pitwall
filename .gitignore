@@ -12,8 +12,8 @@ logs/
 *.log
 npm-debug.log*
 
-# FastF1 cache
-backend/.fastf1_cache/
+# cache
+cache/
 
 # MacOS files
 .DS_Store

@@ -1,10 +1,10 @@
-import { Timer } from 'lucide-react'
+import { Timer } from 'lucide-react';
 import { LineChart, axisClasses } from '@mui/x-charts';
 import type { RaceLapData } from '../../types/race';
 
 interface LapTimeTrendProps {
     raceData: RaceLapData;
-}
+};
 
 export default function LapTimeTrend({ raceData }: LapTimeTrendProps) {
     const allLapTimes = [
@@ -30,7 +30,7 @@ export default function LapTimeTrend({ raceData }: LapTimeTrendProps) {
                         {
                             data: raceData.ANT.lapNumbers,
                             label: "Lap Number",
-                            height: 40,
+                            height: 46,
                             tickLabelStyle: {
                                 fill: '#black',
                                 fontSize: 11
@@ -81,4 +81,4 @@ export default function LapTimeTrend({ raceData }: LapTimeTrendProps) {
             </div>
         </div>
     );
-}
+};

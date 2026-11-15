@@ -1,12 +1,14 @@
-import SummaryCard from "../components/dashboard/SummaryCard"
-import { CalendarDays, Flag, Trophy, Icon } from 'lucide-react'
-import { motorRacingHelmet } from "@lucide/lab"
-import CurrentRace from "../components/dashboard/CurrentRace"
-import { useState, useEffect } from "react"
-import LapTimeTrend from "../components/dashboard/LapTimeTrend"
-import type { RaceLapData } from "../types/race"
-import TopDrivers from "../components/dashboard/TopDrivers"
-import TireStrategyOverview from "../components/dashboard/TireStrategyOverview"
+import SummaryCard from "../components/dashboard/SummaryCard";
+import { CalendarDays, Flag, Trophy, Icon } from 'lucide-react';
+import { motorRacingHelmet } from "@lucide/lab";
+import CurrentRace from "../components/dashboard/CurrentRace";
+import { useState, useEffect } from "react";
+import LapTimeTrend from "../components/dashboard/LapTimeTrend";
+import type { RaceLapData } from "../types/race";
+import TopDrivers from "../components/dashboard/TopDrivers";
+import TireStrategyOverview from "../components/dashboard/TireStrategyOverview";
+import { getSeasons, type Season } from "../services/api";
+
 
 const initialRace = {
     title: "Mexico City Grand Prix",
@@ -31,8 +33,9 @@ const driverChampionship = {
 
 export default function Dashboard() {
     const [selectedRace, setSelectedRace] = useState(initialRace);
-    const [raceData, setRaceData] = useState<RaceLapData | null>(null)
-    const [topDrivers, setTopDrivers] = useState(driverChampionship)
+    const [raceData, setRaceData] = useState<RaceLapData | null>(null);
+    const [topDrivers, setTopDrivers] = useState(driverChampionship);
+    const [seasons, setSeasons] = useState<Season[]>([]);
 
     useEffect(() => {
         async function fetchRaceData() {
@@ -44,6 +47,18 @@ export default function Dashboard() {
 
         fetchRaceData();
     }, []);
+
+    useEffect(() => {
+        getSeasons()
+        .then((data) => {
+            setSeasons(data.MRData.SeasonTable.Seasons);
+        })
+        .catch((error) => {
+            console.error("Failed to fetch seasons:", error);
+        });
+    }, []);
+
+    console.log(seasons);
 
     return (
         <main className="flex-1 h-screen overflow-y-auto scrollbar-thin bg-zinc-950 text-white p-8">
@@ -64,5 +79,5 @@ export default function Dashboard() {
                 <TopDrivers results={topDrivers.results} />
             </div>
         </main>
-    )
-}
+    );
+};

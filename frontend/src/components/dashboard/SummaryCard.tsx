@@ -3,7 +3,7 @@ interface SummaryCardProps {
     value: string | number;
     description: string;
     icon: React.ReactNode;
-}
+};
 
 export default function SummaryCard({ title, value, description, icon }: SummaryCardProps) {
 
@@ -19,4 +19,4 @@ export default function SummaryCard({ title, value, description, icon }: Summary
             </div>
         </div>
     );
-}
+};

@@ -1,6 +1,6 @@
-import { Icon } from 'lucide-react'
-import { tire } from '@lucide/lab'
-import { PieChart, pieClasses } from '@mui/x-charts/PieChart';
+import { Icon } from 'lucide-react';
+import { tire } from '@lucide/lab';
+import { PieChart } from '@mui/x-charts/PieChart';
 
 const size = {
   width: 320,

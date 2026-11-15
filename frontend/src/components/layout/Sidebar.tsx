@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { ChartColumn, CalendarDays, Timer, Wrench, ChartSpline } from 'lucide-react'
+import { getHealth } from '../../services/api';
 
 interface HealthResponse {
   status: string
   application: string
-}
+};
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
@@ -20,18 +21,14 @@ export default function Sidebar() {
   ];
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/health')
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Backend request failed')
-      }
-
-      return response.json()
-    })
+    getHealth()
     .then((data: HealthResponse) => {
       setHealth(data)
     })
-  }, [])
+    .catch((error) => {
+      console.error("Health check failed:", error);
+    });
+  }, []);
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -92,4 +89,4 @@ export default function Sidebar() {
       </aside>
     </div>
   );
-}
+};

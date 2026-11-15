@@ -1,9 +1,18 @@
+const { readCache, writeCache } = require("./cacheService");
+
 const BASE_URL = "https://api.jolpi.ca/ergast/f1";
 const HEADERS = {
     "User-Agent": "Pitwall/1.0"
 };
+const SEASONS_CACHE_TTL = 24 * 60 * 60 * 1000;
 
 const getSeasons = async () => {
+    const cachedData = await readCache("seasons.json", SEASONS_CACHE_TTL);
+    if (cachedData) {
+        console.log("Seasons: Cache hit");
+        return cachedData;
+    }
+    console.log("Cache miss - fetching from Jolpica");
     try {
         const response = await fetch(`${BASE_URL}/seasons.json?limit=100`, {
             headers: HEADERS,
@@ -13,6 +22,7 @@ const getSeasons = async () => {
             throw new Error("Jolpica API unavailable");
         }
         const data = await response.json();
+        await writeCache("seasons.json", data);
         return data;
     } catch (error) {
         if (error.name === "TimeoutError") {

@@ -1,4 +1,4 @@
-import { UserGroup } from 'lucide-react'
+import { UserGroup } from 'lucide-react';
 
 interface TopDriversProp {
     results: {
@@ -7,7 +7,7 @@ interface TopDriversProp {
         team: string;
         points: number;
     }[];
-}
+};
 
 export default function TopDrivers({ results }: TopDriversProp) {
     const maxPoints = Math.max(results[0].points, results[1].points, results[2].points, 1)
@@ -57,4 +57,4 @@ export default function TopDrivers({ results }: TopDriversProp) {
             </div>
         </div>
     );
-}
+};
