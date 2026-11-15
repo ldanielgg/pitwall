@@ -50,10 +50,10 @@ export default function Dashboard() {
             <h1 className="text-6xl font-semibold">Dashboard</h1>
             <h2 className="text-2xl text-zinc-400">Formula 1 data and race overview</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-4">
-                <SummaryCard title="seasons" value="2018 - 2026" description="9 seasons available" icon={<CalendarDays size={64} color="red" />} />
-                <SummaryCard title="races" value="197" description="Total races" icon={<Flag size={64} color="red" />} />
-                <SummaryCard title="drivers" value="22" description="Active in this period" icon={<Icon iconNode={motorRacingHelmet} size={64} color="red" />} />
-                <SummaryCard title="championships" value="15" description="WDCs shared by active drivers" icon={<Trophy size={64} color="gold" />} />
+                <SummaryCard title="seasons" value="2018 - 2026" description="9 seasons available" icon={<CalendarDays size={51} color="red" />} />
+                <SummaryCard title="races" value="197" description="Total races" icon={<Flag size={51} color="red" />} />
+                <SummaryCard title="drivers" value="22" description="Active in this period" icon={<Icon iconNode={motorRacingHelmet} size={51} color="red" />} />
+                <SummaryCard title="championships" value="15" description="WDCs shared by active drivers" icon={<Trophy size={51} color="gold" />} />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-4">
                 <CurrentRace race={selectedRace} image="https://www.racefans.net/wp-content/uploads/2026/11/racefansdotnet-24-11-02-00-47-07-3-SI202611010505.jpg" />

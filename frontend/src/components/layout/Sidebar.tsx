@@ -12,11 +12,11 @@ export default function Sidebar() {
   const [health, setHealth] = useState<HealthResponse | null>(null)
 
   const menuItems = [
-    { name: 'Dashboard', icon: <ChartColumn size={32} /> },
-    { name: 'Race Archive', icon: <CalendarDays size={32} /> },
-    { name: 'Lap Times', icon: <Timer size={32} /> },
-    { name: 'Pit Stops', icon: <Wrench size={32} /> },
-    { name: 'Analysis', icon: <ChartSpline size={32} /> },
+    { name: 'Dashboard', icon: <ChartColumn size={26} /> },
+    { name: 'Race Archive', icon: <CalendarDays size={26} /> },
+    { name: 'Lap Times', icon: <Timer size={26} /> },
+    { name: 'Pit Stops', icon: <Wrench size={26} /> },
+    { name: 'Analysis', icon: <ChartSpline size={26} /> },
   ];
 
   useEffect(() => {
@@ -36,9 +36,9 @@ export default function Sidebar() {
   return (
     <div className="flex h-screen bg-gray-100">
       <aside
-        className={`bg-zinc-950 text-white flex flex-col transition-all duration-300 border-r-2 border-[#191d21] ${isOpen ? 'w-80' : 'w-18'}`}
+        className={`bg-zinc-950 text-white flex flex-col transition-all duration-300 border-r-[1.6px] border-[#191d21] ${isOpen ? 'w-80' : 'w-18'}`}
       >
-        <div className="p-5 flex items-center justify-between border-b-2 border-[#191d21] h-24">
+        <div className="p-5 flex items-center justify-between border-b-[1.6px] border-[#191d21] h-24">
           {isOpen && <span className="font-bold text-5xl tracking-wider">PITWALL</span>}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -59,7 +59,7 @@ export default function Sidebar() {
                   : `text-slate-400 hover:bg-[#382021]`
                 }`}
             >
-              <span className="text-xl min-w-[24px]">{item.icon}</span>
+              <span className="text-xl min-w-[19px]">{item.icon}</span>
               <span
                 className={`ml-4 transition-opacity duration-200 whitespace-nowrap text-xl ${isOpen
                     ? 'opacity-100 visible'
@@ -71,7 +71,7 @@ export default function Sidebar() {
             </a>
           ))}
         </nav>
-        <div className="p-6 border-t-2 border-[#191d21] text-xl text-slate-400 text-center h-32 flex flex-col items-start">
+        <div className="p-6 border-t-[1.6px] border-[#191d21] text-xl text-slate-400 text-center h-32 flex flex-col items-start">
           {isOpen ? (
             <span className="flex flex-row items-center gap-2 text-slate-300">
               {health ? (

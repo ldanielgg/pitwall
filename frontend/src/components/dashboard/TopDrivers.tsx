@@ -13,9 +13,9 @@ export default function TopDrivers({ results }: TopDriversProp) {
     const maxPoints = Math.max(results[0].points, results[1].points, results[2].points, 1)
 
     return (
-        <div className="relative flex flex-col mt-6 bg-gradient-to-b from-zinc-950 to-gray-900 border-2 border-[#191d21] rounded-xl py-2 pl-1">
+        <div className="relative flex flex-col mt-6 bg-gradient-to-b from-zinc-950 to-gray-900 border-[1.6px] border-[#191d21] rounded-xl py-2 pl-1">
             <div className="pt-4 pr-4 pl-4 flex flex-row items-center gap-8">
-                <UserGroup size={64} color="red"/>
+                <UserGroup size={51} color="red"/>
                 <div className="text-2xl font-semibold text-zinc-400">TOP DRIVERS</div>
             </div>
             <div className="p-4 flex flex-row gap-1 items-stretch">

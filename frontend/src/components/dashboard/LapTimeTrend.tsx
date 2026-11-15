@@ -1,5 +1,5 @@
 import { Timer } from 'lucide-react'
-import { LineChart } from '@mui/x-charts';
+import { LineChart, axisClasses } from '@mui/x-charts';
 import type { RaceLapData } from '../../types/race';
 
 interface LapTimeTrendProps {
@@ -19,9 +19,9 @@ export default function LapTimeTrend({ raceData }: LapTimeTrendProps) {
     const upperBound = sortedLapTimes[Math.floor(sortedLapTimes.length * 0.75)];
 
     return (
-        <div className="relative flex flex-col mt-6 bg-gradient-to-b from-zinc-950 to-gray-900 border-2 border-[#191d21] rounded-xl py-2 pl-1">
+        <div className="relative flex flex-col mt-6 bg-gradient-to-b from-zinc-950 to-gray-900 border-[1.6px] border-[#191d21] rounded-xl py-2 pl-1">
             <div className="pt-4 pr-4 pl-4 flex flex-row items-center gap-8">
-                <Timer size={64} color="red"/>
+                <Timer size={51} color="red"/>
                 <div className="text-2xl font-semibold text-zinc-400">LAP TIME TREND</div>
             </div>
             <div className="pl-4 pr-4 pb-4 flex">
@@ -30,9 +30,10 @@ export default function LapTimeTrend({ raceData }: LapTimeTrendProps) {
                         {
                             data: raceData.ANT.lapNumbers,
                             label: "Lap Number",
+                            height: 40,
                             tickLabelStyle: {
                                 fill: '#black',
-                                fontSize: 14
+                                fontSize: 11
                             },
                         },
                     ]}
@@ -55,22 +56,27 @@ export default function LapTimeTrend({ raceData }: LapTimeTrendProps) {
                             min: lowerBound - 1,
                             max: upperBound + 1,
                             label: "Lap Time (seconds)",
+                            width: 52,
                             tickLabelStyle: {
                                 fill: '#9CA3AF',
-                                fontSize: 14
+                                fontSize: 11
                             }
                         },
                     ]}
                     slotProps={{
                         legend: {
-                            sx: { fontSize: 16, fontWeight: 600 },
+                            sx: { fontSize: 13, fontWeight: 600 },
                         }
                     }}
                     grid={{
                         horizontal: true,
                         vertical: true,
                     }}
-                    height={400}
+                    height={320}
+                    margin={16}
+                    sx={{
+                        [`& .${axisClasses.label}`]: { fontSize: 11 },
+                    }}
                 />
             </div>
         </div>
