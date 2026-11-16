@@ -7,7 +7,8 @@ import LapTimeTrend from "../components/dashboard/LapTimeTrend";
 import type { RaceLapData } from "../types/race";
 import TopDrivers from "../components/dashboard/TopDrivers";
 import TireStrategyOverview from "../components/dashboard/TireStrategyOverview";
-import { getSeasons, type Season } from "../services/api";
+import { getSeasons, getRacesBySeason, type Season, type Race } from "../services/api";
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 
 const initialRace = {
@@ -36,6 +37,9 @@ export default function Dashboard() {
     const [raceData, setRaceData] = useState<RaceLapData | null>(null);
     const [topDrivers, setTopDrivers] = useState(driverChampionship);
     const [seasons, setSeasons] = useState<Season[]>([]);
+    const [selectedSeason, setSelectedSeason] = useState<string>("2026");
+    const [races, setRaces] = useState<Race[]>([]);
+    const [selectedRaceRound, setSelectedRaceRound] = useState<string>("");
 
     useEffect(() => {
         async function fetchRaceData() {
@@ -58,12 +62,69 @@ export default function Dashboard() {
         });
     }, []);
 
-    console.log(seasons);
+    useEffect(() => {
+        getRacesBySeason(selectedSeason)
+        .then((data) => {
+            setRaces(data.MRData.RaceTable.Races);
+            setSelectedRaceRound(data.MRData.RaceTable.Races[0].round);
+        })
+        .catch((error) => {
+            console.error("Failed to fetch races:", error);
+        });
+    }, [selectedSeason]);
 
     return (
         <main className="flex-1 h-screen overflow-y-auto scrollbar-thin bg-zinc-950 text-white p-8">
-            <h1 className="text-6xl font-semibold">Dashboard</h1>
-            <h2 className="text-2xl text-zinc-400">Formula 1 data and race overview</h2>
+            <div className="flex flex-row gap-8 items-center justify-between">
+                <div>
+                    <h1 className="text-6xl font-semibold">Dashboard</h1>
+                    <h2 className="text-2xl text-zinc-400">Formula 1 data and race overview</h2>
+                </div>
+                <div className="flex flex-row gap-8 items-center">
+                    <FormControl sx={{ minWidth: 150 }}>
+                        <InputLabel id="season-label">Season</InputLabel>
+                        <Select
+                            labelId="season-label"
+                            id="season-select"
+                            value={selectedSeason}
+                            label="Season"
+                            onChange={(event) => setSelectedSeason(event.target.value)}
+                            MenuProps={{
+                                sx: {
+                                    maxHeight: 300
+                                    }
+                            }}
+                        >
+                            {[...seasons].reverse().map((season) => (
+                                <MenuItem key={season.season} value={season.season}>
+                                    {season.season}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                    <FormControl sx={{ minWidth: 200 }}>
+                        <InputLabel id="race-label">Race</InputLabel>
+                        <Select
+                            labelId="race-label"
+                            id="race-select"
+                            value={selectedRaceRound}
+                            label="Race"
+                            onChange={(event) => setSelectedRaceRound(event.target.value)}
+                            MenuProps={{
+                                sx: {
+                                    maxHeight: 300
+                                    }
+                            }}
+                        >
+                            {races.map((race) => (
+                                <MenuItem key={race.round} value={race.round}>
+                                    {race.raceName}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-4">
                 <SummaryCard title="seasons" value="2018 - 2026" description="9 seasons available" icon={<CalendarDays size={51} color="red" />} />
                 <SummaryCard title="races" value="197" description="Total races" icon={<Flag size={51} color="red" />} />

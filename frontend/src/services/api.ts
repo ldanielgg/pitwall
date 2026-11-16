@@ -5,10 +5,34 @@ export type Season = {
     url: string;
 };
 
+export type Race = {
+    season: string;
+    round: string;
+    raceName: string;
+    date: string;
+    Circuit: {
+        circuitId: string;
+        circuitName: string;
+        Location: {
+            locality: string;
+            country: string;
+        };
+    };
+};
+
 export type SeasonsResponse = {
     MRData: {
         SeasonTable: {
             Seasons: Season[];
+        };
+    };
+};
+
+export type RacesResponse = {
+    MRData: {
+        RaceTable: {
+            season: string;
+            Races: Race[];
         };
     };
 };
@@ -26,6 +50,15 @@ export const getSeasons = async (): Promise<SeasonsResponse> => {
     const response = await fetch(`${API_BASE_URL}/seasons`);
     if (!response.ok) {
         throw new Error("Unable to fetch seasons");
+    }
+
+    return response.json();
+};
+
+export const getRacesBySeason = async (year: string): Promise<RacesResponse> => {
+    const response = await fetch(`${API_BASE_URL}/seasons/${year}`);
+    if (!response.ok) {
+        throw new Error(`Unable to fetch races for ${year}`)
     }
 
     return response.json();
